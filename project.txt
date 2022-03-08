@@ -1,0 +1,59 @@
+print("Dataset")
+dataset=pd.read_csv(r'C:\Users\Asif Khan\Documents\pythonproject\Lung Cancer Detection\dataset.csv')
+print(len(dataset))
+print(dataset.head())
+
+dataset.shape
+
+dataset.describe()
+
+dataset.info()
+
+dataset.mode()
+
+dataset.iloc[55:59,3:6]
+
+sns.boxplot(dataset['Age']);
+
+# Checking whether dataset has missing values
+
+Feature Scaling:
+sc_x=StandardScaler()
+x_train=sc_x.fit_transform(x_train)
+x_test=sc_x.transform(x_test)
+
+
+Using KNN algorithm:
+import math
+a=math.sqrt(len(y_train))
+print(a)
+
+#Defining a model
+classifier=KNeighborsClassifier(n_neighbors=5, p=2, metric='euclidean')
+
+#Fit model
+classifier.fit(x_train, y_train)
+
+predict test_set result:
+y_pred=classifier.predict(x_test)
+print(y_pred)
+
+Evaluate model:
+Confusion Matrix:
+cm=confusion_matrix(y_test, y_pred)
+print("confusion matrix:")
+print(cm)
+
+print('F1 Score:',(f1_score(y_test,y_pred))*100)
+
+print("Accuracy:",(accuracy_score(y_test, y_pred))*100)
+
+
+Using Decission Tree:
+c = tree.DecisionTreeClassifier()
+c.fit(x_train, y_train)
+accu_train=np.sum(c.predict(x_train)==y_train)/float(y_train.size)
+accu_test=np.sum(c.predict(x_test)==y_test)/float(y_test.size)
+
+print('Classification accuracy on train',(accu_train)*100)
+print('Classification accuracy on test',(accu_test)*100)
